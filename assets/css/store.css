@@ -1,0 +1,311 @@
+/* -------------- HEAD -------------- */
+
+.store-head {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    background-color: gray;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.store-head::before {
+    display: block;
+    position: absolute;
+    background: linear-gradient(to bottom, #00000000 50%, #000000 100%);
+    content: '';
+    width: 100%;
+    height: 300px;
+}
+
+.store-head img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.store-title {
+    position: absolute;
+    font-size: 36px;
+    font-weight: bold;
+    bottom: 54px;
+    left: 40px;
+}
+
+.store-location-basic {
+    position: absolute;
+    font-size: 20px;
+    bottom: 27px;
+    left: 40px;
+    color: #cacaca;
+}
+
+.store-category {
+    position: absolute;
+    height: 80px;
+    width: 80px;
+    bottom: 46px;
+    right: 20px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.store-category img {
+    height: 80px;
+    width: 80px;
+    object-fit: contain;
+    margin-bottom: 4px;
+}
+
+/* ------------- MAIN ------------- */
+
+.section-box-head {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.section-box {
+    box-shadow: 0 2px 8px 0 rgba(0,0,0,0.2);
+    border: 0.75px solid rgb(211, 211, 211);
+    max-width: 100%;
+    /* overflow: hidden; */
+    /* margin-top: 16px; */
+    padding-bottom: 10px;
+    background-color: white;
+    padding: 20px;
+    margin-bottom: 16px;
+}
+
+.store-button {
+    background-color: dodgerblue;
+    border: 2px solid dodgerblue;
+    border-radius: 6px;
+    color: white;
+    padding: 12px;
+    margin-left: 6px;
+    text-align: center;
+    text-decoration: none;
+    /* display: inline-block; */
+    font-size: 16px;
+    transition: .25s;
+    float: right;
+}
+
+.store-button:hover {
+    border: 2px solid dodgerblue;
+    color: dodgerblue;
+    background-color: white;
+}
+
+.report-button {
+    float: left;
+    margin-left: 0;
+    margin-right: 16px;
+    color: gray;
+    background-color: lightgray;
+    border-color: lightgray;
+}
+
+.report-button:hover {
+    border-color: lightgray;
+    color: gray;
+}
+
+/* ---------- PROMOTIONS ---------- */
+
+.promotion-box {
+    float: left;
+    width: 65%;
+}
+
+.promotion-box .section-box-head {
+    color: tomato;
+}
+
+.promotion-button {
+    background-color: tomato;
+    border-color: tomato;
+}
+
+.promotion-button:hover {
+    border-color: tomato;
+    color: tomato;
+}
+
+.promotion-box img {
+    margin-top: 20px;
+    max-width: 100%;
+    height: 200px;
+    object-fit: contain;
+}
+
+/* ----------- DETAILS ----------- */
+
+.detail-box {
+    float: right;
+    width: 27%;
+}
+
+.detail-box p, .detail-box table {
+    color: grey;
+    width: 100%;
+}
+
+.alert-red {
+    font-weight: bold;
+    color: red;
+}
+
+.contact-align a {
+    display: block;
+    margin: 6px 10px;
+    text-decoration: none;
+    color: grey;
+}
+
+.contact-align a:hover {
+    color: firebrick;
+}
+
+/* ------------ Photos ------------ */
+
+.photo-box {
+    float: left;
+    width: 65%;
+}
+
+.photo-container {
+    display: flex;
+    overflow-x: auto;
+}
+
+.photo-box img {
+    margin: 20px 12px 12px 0;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+}
+
+/* ---------- GOOGLE MAPS ---------- */
+
+.location-box {
+    float: left;
+    width: 65%;
+}
+
+#googleMap {
+    width: 100%;
+    height: 350px;
+    margin: 10px 0;
+}
+
+.map-button {
+    background-color: teal;
+    border-color: teal;
+}
+
+.map-button:hover {
+    border-color: teal;
+    color: teal;
+}
+
+/* ------ RATING AND REVIEWS ------ */
+
+.rating-box {
+    clear: both;
+}
+
+.rating-bar {
+    content: '';
+    width: 200px;
+    height: 6px;
+    background-color: #f0f0f0;
+    margin-bottom: 2px;
+    border-radius: 10px;
+}
+
+.rating-bar::before {
+    display: block;
+    position: absolute;
+    background-color: orange;
+    content: '';
+    height: 6px;
+    border-radius: 10px;
+}
+
+.rating-bar.bar-5::before {width:198px}
+.rating-bar.bar-4::before {width:126px}
+.rating-bar.bar-3::before {width:54px}
+.rating-bar.bar-2::before {width:0px}
+.rating-bar.bar-1::before {width:26px}
+
+#sum-rating {
+    font-size: 70px;
+    padding: 10px;
+    font-weight: bold;
+}
+
+/* Review */
+.review-container {
+    padding: 20px 0;
+    overflow: auto;
+    display: -webkit-box;
+}
+
+.review-box {
+    width: 350px;
+    height: 200px;
+    padding: 20px;
+    margin: 0 16px 0 0;
+    background-color: #f0f0f0;
+    border-radius: 6px;
+}
+
+.review-title {
+    font-weight: bold;
+}
+
+.reviewer-info {
+    text-align: right;
+    color: gray;
+    float: right;
+}
+
+.reviewer-name {
+    font-weight: bold;
+}
+
+.reviewee {
+    width: 500px;
+    height: auto;
+    padding: 20px;
+    background-color: #f1f2fd;
+    border-radius: 6px;
+}
+
+.reviewee .review-input {
+    background-color: white;
+    border: .5px solid gray;
+    border-radius: 6px;
+    padding: 12px;
+    margin-bottom: 6px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    width: 476px;
+}
+
+.select-star {
+    background-color: dodgerblue;
+    color: white;
+    border-radius: 6px;
+    padding: 12px;
+    margin-bottom: 6px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.select-star option {
+    color: black;
+    background-color: white;
+}

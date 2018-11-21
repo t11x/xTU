@@ -1,0 +1,52 @@
+.add-button{
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+    position: fixed;
+    right: 70px;
+    bottom: 70px;
+    background-color: #259140;
+    border-color: transparent;
+    color: #fff;
+}
+
+.add-buuton:hover, .add-button.is-hover {
+    background-color: #1496ed;
+    border-color: transparent;
+    color: rgb(250, 227, 227);
+}
+
+.custom-card {
+    flex-basis: 20%;
+    margin: 0 20px;
+    width: 150px;
+    height: 189px;
+}
+
+.c-placecard{
+    flex-basis: 25%;
+    margin-left: 25px;
+    box-shadow: 0 0 0;
+    padding-bottom: 30px;
+    max-width: 350px;
+}
+
+
+.c-placecard-img{
+    widows: 100%;
+    display:block;
+}
+.fig{
+    overflow: hidden;
+    margin: 0;
+    height: 190px;
+    width: 322px;
+}
+.custom-round{
+    border-radius: 50%;
+}
+
+.custom-font{
+    font-size: 22px;
+    text-align: center;
+}
