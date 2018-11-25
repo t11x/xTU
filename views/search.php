@@ -1,4 +1,11 @@
-<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/search.css" />
+<?php 
+
+    require '../connect.php';
+
+    require './templates/header.php';
+?>
+
+<link rel="stylesheet" href="../assets/css/search.css" />
 <div class="container move-down">
     <form action="search.php" method="get">
         <input type="text" id="search" name="search" placeholder="Search a store, a category...">
@@ -76,3 +83,7 @@
     </div><!-- End-ITEM -->
 </div>​
 </div>
+<?php
+
+    require './templates/footer.php';
+?>

@@ -2,7 +2,7 @@
 
     require './connect.php';
 
-    require './views/templates/header.php';
+    require './views/templates/headerIndex.php';
 
     require './views/home.php';
 

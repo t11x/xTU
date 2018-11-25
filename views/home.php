@@ -8,7 +8,7 @@
         </div>
     </div> -->
     <!--  Kon -->
-    <!-- <div class="carousel">
+    <div class="carousel">
         <div class="carousel-box">
             <img class="carousel-image" src="https://www.ryoiireview.com/upload/article/201703/1490086420_6f23487b6525f7b2dc3fdb16620dbae5.jpg" alt="ย่างเนย" />
         </div>
@@ -21,7 +21,7 @@
         <div class="carousel-box">
             <img class="carousel-image" src="https://img.wongnai.com/p/1920x0/2016/07/04/887148ed96434c79bcc2faa51dc73efc.jpg" alt="TU" />
         </div>
-    </div> -->
+    </div>
     <!-- Carousel End -->
 
     <!-- Shortcuts -->
@@ -74,13 +74,13 @@
             <div class="head-sub"><i class="fas fa-utensils"></i> Food</div>
             <div class="place-card-align">
             <?php 
-                $sql = "SELECT * FROM store WHERE storeTypeID=1 LIMIT 4";
+                $sql = "SELECT * FROM store WHERE storeType =1 and approve =1 LIMIT 4";
                 $result = $con->query($sql);
                 if(!$result){
                     $con->error;
                 }
                 while ($row = $result->fetch_assoc()){
-                    $sql_image = "SELECT photo FROM photos";
+                    $sql_image = "SELECT photo FROM photos WHERE storeID=$row[storeID]";
                     $result_image = $con->query($sql_image);
                     $row_image = $result_image->fetch_assoc();
 
@@ -89,8 +89,8 @@
                     $row_rating = $result_rating->fetch_assoc();
                     $rating = round($row_rating['rating'], 1);
                     ?>
-                    <div class="place-card"><a href="./views/store.php?id=<?php echo $row['storeID'] ?>">
-                    <div class="place-card-pic-box"><span class="rating-star rating-on-pic"><i class="fas fa-star"></i> <?php echo $rating ?></span><img class="place-card-pic"  src="<?php echo $row_image['photo']; ?> " alt="frenchfries"></div>
+                    <div class="place-card"><a href="./views/store.php?id=<?php echo $row['storeID']; ?>">
+                    <div class="place-card-pic-box"><span class="rating-star rating-on-pic"><i class="fas fa-star"></i> <?php echo $rating ?></span><img class="place-card-pic"  src="<?php echo $row_image['photo']; ?> " alt="<?php echo $row['name']; ?>"></div>
                     <div class="place-card-description">
                     <div class="head-sub"><?php echo $row['name']; ?> 
                     <!-- <span class="operate-box">OPEN</span>  -->
@@ -107,13 +107,13 @@
             <div class="head-sub"><i class="fas fa-coffee"></i> Café</div>
             <div class="place-card-align">
             <?php 
-                $sql = "SELECT * FROM store WHERE storeTypeID=2 LIMIT 4";
+                $sql = "SELECT * FROM store WHERE storeType=2 and approve =1 LIMIT 4";
                 $result = $con->query($sql);
                 if(!$result){
                     $con->error;
                 }
                 while ($row = $result->fetch_assoc()){
-                    $sql_image = "SELECT photo FROM photos";
+                    $sql_image = "SELECT photo FROM photos WHERE storeID=$row[storeID]";
                     $result_image = $con->query($sql_image);
                     $row_image = $result_image->fetch_assoc();
 
@@ -123,7 +123,7 @@
                     $rating = round($row_rating['rating'], 1);
                     ?>
                     <div class="place-card"><a href="./views/store.php?id=<?php echo $row['storeID'] ?>">
-                    <div class="place-card-pic-box"><span class="rating-star rating-on-pic"><i class="fas fa-star"></i> <?php echo $rating ?></span><img class="place-card-pic"  src="<?php echo $row_image['photo']; ?> " alt="frenchfries"></div>
+                    <div class="place-card-pic-box"><span class="rating-star rating-on-pic"><i class="fas fa-star"></i> <?php echo $rating ?></span><img class="place-card-pic"  src="<?php echo $row_image['photo']; ?> " alt="<?php echo $row['name']; ?> "></div>
                     <div class="place-card-description">
                     <div class="head-sub"><?php echo $row['name']; ?> 
                     <!-- <span class="operate-box">OPEN</span>  -->
@@ -140,13 +140,13 @@
             <div class="head-sub"><i class="fas fa-store"></i> Store</div>
             <div class="place-card-align">
             <?php 
-                $sql = "SELECT * FROM store WHERE storeTypeID=3 LIMIT 4";
+                $sql = "SELECT * FROM store WHERE storeType=3 and approve =1 LIMIT 4";
                 $result = $con->query($sql);
                 if(!$result){
                     $con->error;
                 }
                 while ($row = $result->fetch_assoc()){
-                    $sql_image = "SELECT photo FROM photos";
+                    $sql_image = "SELECT photo FROM photos WHERE storeID=$row[storeID]";
                     $result_image = $con->query($sql_image);
                     $row_image = $result_image->fetch_assoc();
 
@@ -156,7 +156,7 @@
                     $rating = round($row_rating['rating'], 1);
                     ?>
                     <div class="place-card"><a href="./views/store.php?id=<?php echo $row['storeID'] ?>">
-                    <div class="place-card-pic-box"><span class="rating-star rating-on-pic"><i class="fas fa-star"></i> <?php echo $rating ?></span><img class="place-card-pic"  src="<?php echo $row_image['photo']; ?> " alt="frenchfries"></div>
+                    <div class="place-card-pic-box"><span class="rating-star rating-on-pic"><i class="fas fa-star"></i> <?php echo $rating ?></span><img class="place-card-pic"  src="<?php echo $row_image['photo']; ?> " alt="<?php echo $row['name']; ?> "></div>
                     <div class="place-card-description">
                     <div class="head-sub"><?php echo $row['name']; ?> 
                     <!-- <span class="operate-box">OPEN</span>  -->
@@ -173,13 +173,13 @@
             <div class="head-sub"><i class="fas fa-store"></i>Pharmacy</div>
             <div class="place-card-align">
             <?php 
-                $sql = "SELECT * FROM store WHERE storeTypeID=4 LIMIT 4";
+                $sql = "SELECT * FROM store WHERE storeType=4 and approve =1 LIMIT 4";
                 $result = $con->query($sql);
                 if(!$result){
                     $con->error;
                 }
                 while ($row = $result->fetch_assoc()){
-                    $sql_image = "SELECT photo FROM photos";
+                    $sql_image = "SELECT photo FROM photos WHERE storeID=$row[storeID]";
                     $result_image = $con->query($sql_image);
                     $row_image = $result_image->fetch_assoc();
 
@@ -189,7 +189,7 @@
                     $rating = round($row_rating['rating'], 1);
                     ?>
                     <div class="place-card"><a href="./views/store.php?id=<?php echo $row['storeID'] ?>">
-                    <div class="place-card-pic-box"><span class="rating-star rating-on-pic"><i class="fas fa-star"></i> <?php echo $rating ?></span><img class="place-card-pic"  src="<?php echo $row_image['photo']; ?> " alt="frenchfries"></div>
+                    <div class="place-card-pic-box"><span class="rating-star rating-on-pic"><i class="fas fa-star"></i> <?php echo $rating ?></span><img class="place-card-pic"  src="<?php echo $row_image['photo']; ?> " alt="<?php echo $row['name']; ?> "></div>
                     <div class="place-card-description">
                     <div class="head-sub"><?php echo $row['name']; ?> 
                     <!-- <span class="operate-box">OPEN</span>  -->
@@ -206,13 +206,13 @@
             <div class="head-sub"><i class="fas fa-store"></i> Others</div>
             <div class="place-card-align">
             <?php 
-                $sql = "SELECT * FROM store WHERE storeTypeID=5 LIMIT 4";
+                $sql = "SELECT * FROM store WHERE storeType=5 and approve =1 LIMIT 4";
                 $result = $con->query($sql);
                 if(!$result){
                     $con->error;
                 }
                 while ($row = $result->fetch_assoc()){
-                    $sql_image = "SELECT photo FROM photos";
+                    $sql_image = "SELECT photo FROM photos WHERE storeID=$row[storeID]";
                     $result_image = $con->query($sql_image);
                     $row_image = $result_image->fetch_assoc();
 
@@ -222,7 +222,7 @@
                     $rating = round($row_rating['rating'], 1);
                     ?>
                     <div class="place-card"><a href="./views/store.php?id=<?php echo $row['storeID'] ?>">
-                    <div class="place-card-pic-box"><span class="rating-star rating-on-pic"><i class="fas fa-star"></i> <?php echo $rating ?></span><img class="place-card-pic"  src="<?php echo $row_image['photo']; ?> " alt="frenchfries"></div>
+                    <div class="place-card-pic-box"><span class="rating-star rating-on-pic"><i class="fas fa-star"></i> <?php echo $rating ?></span><img class="place-card-pic"  src="<?php echo $row_image['photo']; ?> " alt="<?php echo $row['name']; ?> "></div>
                     <div class="place-card-description">
                     <div class="head-sub"><?php echo $row['name']; ?> 
                     <!-- <span class="operate-box">OPEN</span>  -->

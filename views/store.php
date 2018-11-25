@@ -1,25 +1,46 @@
 <?php 
-
     echo $_GET['id'];
+    require '../connect.php';
+    require './templates/header.php';
 
+    $sql = "SELECT * FROM store WHERE storeID = $_GET[id]";
+                $result = $con->query($sql);
+                if(!$result){
+                    $con->error;
+                }
+                $row = $result->fetch_assoc();
+
+    $sql_img = "SELECT photo FROM photos WHERE storeID = $_GET[id]";
+    $result_img = $con->query($sql_img);
+    if(!$result_img){
+        $con->error;
+    }
+    $row_img = $result_img->fetch_assoc()
 ?>
 
-<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/store.css"/>
+<link rel="stylesheet" href="../assets/css/store.css"/>
 <div class="container">
     <!-- Store Head -->
     <div class="store-head">
-        <img src="https://www.ryoiireview.com/upload/article/201710/1507716259_573c8d9bf6527ffd2e59b3f53398a7ee.jpg" alt="">
-        <div class="store-title">Yang Noey 2</div>
-        <div class="store-location-basic"><i class="fas fa-map-marker-alt"></i> Chiang Rak 2 Gate</div>
+        <img src="<?php echo $row_img[photo];?>" alt="">
+        <div class="store-title"><?php echo $row['name']; ?></div>
+        <div class="store-location-basic"><i style="margin-right:10px;" class="fas fa-map-marker-alt"></i><?php echo $row['shortloc']; ?></div>
         <div class="store-category"><img src="https://cdn0.iconfinder.com/data/icons/kameleon-free-pack-rounded/110/Food-Dome-512.png" alt="">Food</div>
     </div><!-- END Store head -->
-
+    <?php
+    $sql_promo = "SELECT * FROM promotion WHERE storeID = $_GET[id]";
+    $result_promo = $con->query($sql_promo);
+    $count_promo = mysqli_num_rows($result_promo);
+    if($count_promo>0){
+        $row_promo = $result_promo->fetch_assoc()
+        ?>
     <div class="section-box promotion-box">
         <div class="section-box-head"><i class="fas fa-bell"></i> Promotions</div>
-        <a href=""><img src="https://via.placeholder.com/500x200" alt=""></a>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor eius voluptas beatae officiis pariatur, hic id nostrum deserunt ab veniam accusamus voluptatum aliquam aspernatur obcaecati, distinctio amet, omnis perspiciatis repellendus!</p>
+        <p><?php echo $row_promo['promotionName']; ?></p>
+        <p><?php echo $row_promo['promotionDescription']; ?></p>
         <a href="" class="store-button promotion-button"><i class="fas fa-plus"></i> Post promotions</a>
     </div><!-- END Promotion box -->
+    <?php } ?>
 
     <div class="section-box detail-box">
         <!-- Hours -->
@@ -43,28 +64,40 @@
         <!-- Contact -->
         <div class="section-box-head"><i class="fas fa-external-link-alt"></i> Contact</div>
         <p class="contact-align">
-            <a href="tel:+6625555555"><i class="fas fa-phone"></i> Telephone</a>
-            <a href="https://www.facebook.com"><i class="fab fa-facebook"></i> Facebook</a>
-            <a href="https://line.me/ti/p/~yourlineid"><i class="fab fa-line"></i> LINE</a>
-            <a href="https://www.google.com"><i class="fas fa-globe"></i> Website</a>
+            <a href="<?php echo $row['phone']; ?>"><i class="fas fa-phone"></i> <?php echo $row['phone']; ?></a>
+            <a href="<?php echo $row['facebook']; ?>"><i class="fab fa-facebook"></i> Facebook</a>
+            <a href="<?php echo $row['line']; ?>"><i class="fab fa-line"></i> LINE</a>
+            <a href="<?php echo $row['site']; ?>"><i class="fas fa-globe"></i> Website</a>
         </p>
         <!-- More info -->
         <div class="section-box-head"><i class="fas fa-info-circle"></i> More info</div>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum enim unde ad omnis vel eveniet, eos aut esse ut corrupti.</p>
+        <p><?php echo $row['descriptino']; ?></p>
         <a href="" class="store-button"><i class="far fa-edit"></i> Edit</a>
         <a href="" class="store-button"><i class="fas fa-user-tie"></i> Are you the owner?</a>
     </div><!-- END Detail box -->
 
+
+
     <div class="section-box photo-box">
         <div class="section-box-head"><i class="fas fa-images"></i> Photos & Videos</div>
         <div class="photo-container">
-            <a href=""><img src="https://via.placeholder.com/150x150" alt=""></a>
-            <a href=""><img src="https://via.placeholder.com/150x150" alt=""></a>
-            <a href=""><img src="https://via.placeholder.com/150x150" alt=""></a>
+        <?php 
+        $sql_img = "SELECT photo FROM photos WHERE storeID = $_GET[id]";
+        $result_img = $con->query($sql_img);
+        if(!$result_img){
+            $con->error;
+        }
+        while ($row_img = $result_img->fetch_assoc()){
+        ?>
+            <a href=""><img src="<?php echo $row_img[photo]; ?>" alt=""></a>
+
+        <?php } ?>
         </div>
         <a href="" class="store-button report-button"><i class="fas fa-exclamation-triangle"></i> Report photos</a>
         <a href="" class="store-button"><i class="fas fa-plus"></i> Add more photos</a>
     </div><!-- END Photo box -->
+
+    
 
     <div class="section-box location-box">
         <div class="section-box-head"><i class="fas fa-map-marked-alt"></i> Location</div>
@@ -75,10 +108,21 @@
 
     <div class="section-box rating-box">
         <div class="section-box-head"><i class="fas fa-pen-nib"></i> Rating & Reviews</div>
+        <?php
+        $sql_ratingcount = "SELECT AVG(rating) AS rating FROM review WHERE storeID=$row[storeID]";
+                    $result_ratingcount = $con->query($sql_ratingcount);
+                    $row_ratingcount = $result_ratingcount->fetch_assoc();
+                    $rating = round($row_ratingcount['rating'], 1);
+            
+        $sql_rating = "SELECT * FROM review WHERE storeID = $_GET[id]";
+        $result_rating = $con->query($sql_rating);
+        $count_rating = mysqli_num_rows($result_rating);
+    
+        ?>
         <table>
             <tr>
-                <td rowspan="5" style="text-align:center"><div id="sum-rating">4.7</div>128 users</td>
-                <td>5</td>
+                <td rowspan="5" style="text-align:center"><div id="sum-rating"><?php echo $rating ?></div><?php echo $count_rating ?> users</td>
+                <!-- <td>5</td>
                 <td><div class="rating-bar bar-5"></div></td>
             </tr>
             <tr>
@@ -95,12 +139,15 @@
             </tr>
             <tr>
                 <td>1</td>
-                <td><div class="rating-bar bar-1"></div></td>
+                <td><div class="rating-bar bar-1"></div></td> -->
             </tr>
         </table><!-- END Star -->
 
         <div class="review-container">
             <div class="review-box">
+                <?php
+                while($row_rating = $result_rating->fetch_assoc()){
+                ?>
                 <div class="review-title">Very good</div>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod debitis inventore, dolores, aut beatae praesentium ex consequuntur aliquid, numquam accusantium temporibus dignissimos et? Facilis harum aspernatur ducimus magnam, vitae veritatis.</p>
                 <div class="reviewer-info">
@@ -109,18 +156,11 @@
                 </div>
                 <a href="">Report abuse</a>
             </div><!-- END review box -->
-            <div class="review-box">
-                <div class="review-title">It's OK</div>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod debitis inventore, dolores, aut beatae praesentium ex consequuntur aliquid, numquam accusantium temporibus dignissimos et? Facilis harum aspernatur ducimus magnam, vitae veritatis.</p>
-                <div class="reviewer-info">
-                    <span class="reviewer-name">USER2</span><br>
-                    01:35 18/11/2018
-                </div>
-                <a href="">Report abuse</a>
-            </div><!-- END review box -->
+               <?php } ?>
         </div>
         <div class="reviewee">
             <form action="/userprofile.php" method="POST">
+                
                 <div class="section-box-head">Write your own review and/or rate the store.</div><br>
                 <input type="hidden" name="user_id">
                 <input type="text" name="title" placeholder="Title" class="review-input"><br>
@@ -140,9 +180,17 @@
 
 
     <!-- GOOGLE MAPS -->
+    <?php
+     $sql_loc = "SELECT * FROM location WHERE storeID = $_GET[id]";
+     $result_loc = $con->query($sql_loc);
+     if(!$result_loc){
+         $con->error;
+     }
+     $row_loc = $result_loc->fetch_assoc() 
+    ?>
     <script>
         function locationMap() {
-            var locationPin = {lat: 14.0656428, lng: 100.6096677};
+            var locationPin = {lat: <?php echo $row_loc['latitude']; ?>, lng: <?php echo $row_loc['longitude']; ?>};
             // Set location & Zoom
             var mapProp = {
                 center: locationPin,
@@ -154,10 +202,15 @@
             var marker = new google.maps.Marker({
                 position: locationPin,
                 map: map,
-                title: 'Yang Noey 2',
+                title: '<?php echo $row['name']; ?>',
                 label: 'A'
             });
         }
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDCeNTOtMkHpQ-yjDtCeVLIwWAM1OCo1JY&callback=locationMap"></script>
 </div>
+
+<?php
+
+require './templates/footer.php';
+?>
