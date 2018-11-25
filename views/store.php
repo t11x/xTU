@@ -114,7 +114,7 @@
                     $row_ratingcount = $result_ratingcount->fetch_assoc();
                     $rating = round($row_ratingcount['rating'], 1);
             
-        $sql_rating = "SELECT * FROM review WHERE storeID = $_GET[id]";
+        $sql_rating = "SELECT * FROM review, user WHERE storeID = $_GET[id] AND review.userID = user.userID ";
         $result_rating = $con->query($sql_rating);
         $count_rating = mysqli_num_rows($result_rating);
     
@@ -148,11 +148,11 @@
                 <?php
                 while($row_rating = $result_rating->fetch_assoc()){
                 ?>
-                <div class="review-title">Very good</div>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod debitis inventore, dolores, aut beatae praesentium ex consequuntur aliquid, numquam accusantium temporibus dignissimos et? Facilis harum aspernatur ducimus magnam, vitae veritatis.</p>
+                <div class="review-title"><?php echo $row_rating['reviewTitle']; ?></div>
+                <p><?php echo $row_rating['review']; ?></p>
                 <div class="reviewer-info">
-                    <span class="reviewer-name">USER1</span><br>
-                    01:27 18/11/2018
+                    <span class="reviewer-name"><?php echo $row_rating['email']; ?></span><br>
+                    <?php echo $row_rating['email']; ?>
                 </div>
                 <a href="">Report abuse</a>
             </div><!-- END review box -->

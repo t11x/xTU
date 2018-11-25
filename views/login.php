@@ -1,4 +1,8 @@
-<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/login.css" />
+<?php 
+    require '../connect.php';
+    require './templates/header.php';
+    ?>
+<link rel="stylesheet" href="../assets/css/login.css" />
 <div class="login-bg"></div>
     <div class="container">
         <div class="alignitems">
@@ -12,7 +16,7 @@
                     <form action="check_login.php" method="POST">
                         <input type="email" name="email" size="32" placeholder="E-mail" class="log-txt"><br>
                         <input type="password" name="pass" size="32" placeholder="Password" class="log-txt"><br><br>
-                        <input type="submit" value="Log in" class="log-button">
+                        <input type="submit" value="Log in" class="log-button" name="login">
                     </form>
                     <br>
                     <a href="forgot_password.php" target="_blank">Forgot password?</a><br><br>
@@ -23,14 +27,14 @@
                     <div class="login-title">Sign up to xTU</div>
                     <div class="login-subtitle">Become a partner with us.</div>
                     <br>
-                    <form action="check_login.php" method="POST">
+                    <form action="check_login.php" method="POST" onsubmit="return checkPass()">
                         <input type="email" name="email" size="32" placeholder="E-mail" class="log-txt"><br>
-                        <input type="password" name="pass" size="32" placeholder="Password" class="log-txt"><br>
-                        <input type="password" name="check_pass" size="32" placeholder="Confirm password" class="log-txt"><br><br>
+                        <input id="pass" minlength=8 type="password" required name="pass" size="32" placeholder="Password" class="log-txt"><br>
+                        <input id="check_pass" minlength=8 type="password" required name="check_pass" size="32" placeholder="Confirm password" class="log-txt"><br><br>
                         <div class="login-subtitle">By clicking Sign up, you agree to User Agreement,
                             <br>Privacy Policy, and Cookie Policy</div>
                         <br>
-                        <input type="submit" value="Sign up" class="log-button">
+                        <input type="submit" value="Sign up" class="log-button" name="signup">
                     </form>
                 </div>
             </div>
@@ -47,6 +51,15 @@
             document.getElementById('signup').style.display = "none"
             document.getElementById('login').style.display = "block"
         })
+
+        function checkPass(){
+            if (document.getElementById('pass').value==document.getElementById('check_pass').value){
+                return true
+            } else {
+                alert('password is not match')
+                return false
+            }
+        }
     </script>
 </body>
 <!-- NO FOOTER -->

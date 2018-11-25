@@ -1,0 +1,134 @@
+body, html {
+    height: 100%;
+}
+
+.alignitems {
+    top: 0;
+    width: 1200px;
+    height: 100%;
+    position: absolute;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+@media screen and (max-width: 1250px) {
+    .alignitems {
+        width: 100%;
+        flex-direction: column;
+        margin: 40px 0;
+    }
+
+    .log-lg {
+        margin: 0 0 0 50px;
+    }
+}
+
+.login-bg {
+    position: sticky;
+    background-image: url("http://www.tu.ac.th/uploads/_tu_img/home/domerangsit.jpg");
+    filter: blur(12px);
+    -webkit-filter: blur(12px);
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: -1;
+}
+
+#login-box {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    width: 450px;
+    height: 350px;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 8px 30px 0 rgba(0,0,0,0.2);
+    border: .5px solid #ddd;
+    border-radius: 10px;
+    text-align: center;
+    transition: .2s all;
+}
+
+.log-lg {
+    width: 250px;
+}
+
+.login-title {
+    font-weight: bold;
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.login-subtitle {
+    color: gray;
+}
+
+/* ---------- FORM ---------- */
+
+.log-txt {
+    font-size: 16px;
+    padding: 6px;
+    border: none;
+    border-bottom: 2px solid lightgray;
+    margin: 6px 0;
+    transition: .2s;
+}
+
+.log-txt:focus {
+    outline: none;
+    border-bottom: 2px solid dodgerblue;
+}
+
+.log-button {
+    font-size: 16px;
+    color: white;
+    padding: 10px 26px;
+    background-color: dodgerblue;
+    border: 2px solid dodgerblue;
+    border-radius: 30px;
+    transition: .3s;
+}
+
+.log-button:hover {
+    color: dodgerblue;
+    background-color: white;
+}
+
+.log-button:focus {
+    outline: none;
+    color: white;
+    background-color: rgb(15, 67, 119);
+}
+
+/* ---------- SPECIAL ---------- */
+#signup {display: none;}
+
+#signup-switch {
+    text-decoration: underline;
+    color: steelblue;
+}
+
+#signup-switch:hover {
+    color: darkred;
+    cursor: pointer;
+}
+
+#login-switch {
+    display: table;
+    /* text-align: left; */
+    color: gray;
+    background-color: #eee;
+    padding: 6px 10px;
+    margin-bottom: 12px;
+    border-radius: 20px;
+    transition: .2s;
+}
+
+#login-switch:hover {
+    color: white;
+    background-color: dodgerblue;
+    cursor: pointer;
+}
