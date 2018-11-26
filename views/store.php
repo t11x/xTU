@@ -2,6 +2,7 @@
     echo $_GET['id'];
     require '../connect.php';
     require './templates/header.php';
+    
 
     $sql = "SELECT * FROM store WHERE storeID = $_GET[id]";
                 $result = $con->query($sql);

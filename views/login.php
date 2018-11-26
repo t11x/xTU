@@ -1,6 +1,7 @@
 <?php 
     require '../connect.php';
     require './templates/header.php';
+    session_start();
     ?>
 <link rel="stylesheet" href="../assets/css/login.css" />
 <div class="login-bg"></div>
@@ -15,7 +16,7 @@
                     <br>
                     <form action="check_login.php" method="POST">
                         <input type="email" name="email" size="32" placeholder="E-mail" class="log-txt"><br>
-                        <input type="password" name="pass" size="32" placeholder="Password" class="log-txt"><br><br>
+                        <input type="password" minlength=8 name="pass" size="32" placeholder="Password" class="log-txt"><br><br>
                         <input type="submit" value="Log in" class="log-button" name="login">
                     </form>
                     <br>

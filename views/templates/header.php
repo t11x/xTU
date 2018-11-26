@@ -1,5 +1,6 @@
 <?php
 // defined('BASEPATH') OR exit('No direct script access allowed');
+session_start();
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,27 +31,27 @@
                 <div class="dropdown-subcat">
                     <div class="dropdown-subcat-head"><i class="fas fa-utensils"></i> Food & Drink</div>
                     <div class="dropdown-item">
-                        <a href=""><img src="https://cdn.icon-icons.com/icons2/881/PNG/512/Hamburger_icon-icons.com_68741.png" alt=""><div class="dd-t">Food</div></a>
-                        <a href=""><img src="https://marketplace.canva.com/MACaIUDtCx8/1/thumbnail_large/canva-cafe-icon-concept-MACaIUDtCx8.png" alt=""><div class="dd-t">Café</div></a>
-                        <a href=""><img src="https://cdn.icon-icons.com/icons2/881/PNG/512/Cocktail_icon-icons.com_68766.png" alt=""><div class="dd-t">Drink</div></a>
-                        <a href=""><img src="https://image.flaticon.com/icons/png/512/138/138307.png" alt=""><div class="dd-t">Stall</div></a>
+                        <a href="<?php echo "search.php?category=1"; ?>"><img src="https://cdn.icon-icons.com/icons2/881/PNG/512/Hamburger_icon-icons.com_68741.png" alt=""><div class="dd-t">Food</div></a>
+                        <a href="<?php echo "search.php?category=2"; ?>"><img src="https://marketplace.canva.com/MACaIUDtCx8/1/thumbnail_large/canva-cafe-icon-concept-MACaIUDtCx8.png" alt=""><div class="dd-t">Café</div></a>
+                        <a href="<?php echo "search.php?category=drink"; ?>"><img src="https://cdn.icon-icons.com/icons2/881/PNG/512/Cocktail_icon-icons.com_68766.png" alt=""><div class="dd-t">Drink</div></a>
+                        <a href="<?php echo "search.php?category=stall"; ?>"><img src="https://image.flaticon.com/icons/png/512/138/138307.png" alt=""><div class="dd-t">Stall</div></a>
                     </div>
                 </div><!-- END Subcat -->
                 <div class="dropdown-subcat">
                     <div class="dropdown-subcat-head"><i class="fas fa-store"></i> Stores</div>
                     <div class="dropdown-item">
-                        <a href=""><img src="https://pbs.twimg.com/profile_images/955329141707915265/FzsHnjOp_400x400.jpg" alt=""><div class="dd-t">7-11</div></a>
-                        <a href=""><img src="https://i1.wp.com/muchikoro.com/wordpress/wp-content/uploads/2016/07/FamilyMart-300x300.png" alt=""><div class="dd-t">Family Mart</div></a>
-                        <a href=""><img src="https://superryu247.files.wordpress.com/2013/04/lawson_logo.jpg" alt=""><div class="dd-t">Lawson 108</div></a>
-                        <a href=""><img src="https://www.oikosfamily.co.za/wp-content/uploads/2016/03/store-Icon-1.png" alt=""><div class="dd-t">Others</div></a>
+                        <a href="<?php echo "search.php?category=711"; ?>"><img src="https://pbs.twimg.com/profile_images/955329141707915265/FzsHnjOp_400x400.jpg" alt=""><div class="dd-t">7-11</div></a>
+                        <a href="<?php echo "search.php?category=familymart"; ?>"><img src="https://i1.wp.com/muchikoro.com/wordpress/wp-content/uploads/2016/07/FamilyMart-300x300.png" alt=""><div class="dd-t">Family Mart</div></a>
+                        <a href="<?php echo "search.php?category=lawson"; ?>"><img src="https://superryu247.files.wordpress.com/2013/04/lawson_logo.jpg" alt=""><div class="dd-t">Lawson 108</div></a>
+                        <a href="<?php echo "search.php?category=others"; ?>"><img src="https://www.oikosfamily.co.za/wp-content/uploads/2016/03/store-Icon-1.png" alt=""><div class="dd-t">Others</div></a>
                     </div>
                 </div><!-- END Subcat -->
                 <div class="dropdown-subcat">
                     <div class="dropdown-subcat-head"><i class="fas fa-user-cog"></i> Services</div>
                     <div class="dropdown-item">
-                        <a href=""><img src="https://pbs.twimg.com/profile_images/955329141707915265/FzsHnjOp_400x400.jpg" alt=""><div class="dd-t">7-11</div></a>
-                        <a href=""><img src="https://i1.wp.com/muchikoro.com/wordpress/wp-content/uploads/2016/07/FamilyMart-300x300.png" alt=""><div class="dd-t">Family Mart</div></a>
-                        <a href=""><img src="https://superryu247.files.wordpress.com/2013/04/lawson_logo.jpg" alt=""><div class="dd-t">Lawson 108</div></a>
+                        <a href="<?php echo "search.php?category=711"; ?>"><img src="https://pbs.twimg.com/profile_images/955329141707915265/FzsHnjOp_400x400.jpg" alt=""><div class="dd-t">7-11</div></a>
+                        <a href="<?php echo "search.php?category=familymart"; ?>"><img src="https://i1.wp.com/muchikoro.com/wordpress/wp-content/uploads/2016/07/FamilyMart-300x300.png" alt=""><div class="dd-t">Family Mart</div></a>
+                        <a href="<?php echo "search.php?category=lawson"; ?>"><img src="https://superryu247.files.wordpress.com/2013/04/lawson_logo.jpg" alt=""><div class="dd-t">Lawson 108</div></a>
                     </div>
                 </div><!-- END Subcat -->
             </div><!-- END dropdown container --></div><!-- END dropdown menu -->
@@ -58,9 +59,30 @@
 
             <div class="nav-right">
                 <span class="nav-list">ThammaTrans</span>
-                <a href=""><span class="nav-item nav-user"><i class="fas fa-user-circle nav-icon"></i>
-                    <span class="nav-hide-text">&nbsp; Login / Sign up</span>
-                </span></a>
+                <?php
+                            if(isset($_SESSION['email'])){
+                                ?>
+                                <a href=""><span class="nav-item nav-user"><i class="fas fa-user-circle nav-icon"></i>
+                                    <span class="nav-hide-text">&nbsp;
+                                        <?php echo $_SESSION['email']; ?>
+                                    </span>
+                                </span></a>
+                                <a href="logout.php"><span class="nav-item nav-user">
+                                    &nbsp;
+                                        logout
+                                </span></a>
+                                <?php
+                            } else {
+                                ?>
+                                <a href="login.php"><span class="nav-item nav-user"><i class="fas fa-user-circle nav-icon"></i>
+                                    <span class="nav-hide-text">&nbsp;
+                                        <?php echo 'Login / Sign up' ; ?>
+                                    </span>
+                                </span></a>
+                                <?php
+                            }
+                        ?>
+
                 <a href=""><span class="nav-item nav-search"><i class="fas fa-search fa-lg"></i>
                     <span class="nav-hide-text">&nbsp; Search</span>
                 </span></a>

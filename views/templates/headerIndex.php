@@ -1,5 +1,6 @@
 <?php
 // defined('BASEPATH') OR exit('No direct script access allowed');
+session_start();
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -58,9 +59,30 @@
 
             <div class="nav-right">
                 <span class="nav-list">ThammaTrans</span>
-                <a href=""><span class="nav-item nav-user"><i class="fas fa-user-circle nav-icon"></i>
-                    <span class="nav-hide-text">&nbsp; Login / Sign up</span>
-                </span></a>
+                <?php
+                            if(isset($_SESSION['email'])){
+                                ?>
+                                <a href=""><span class="nav-item nav-user"><i class="fas fa-user-circle nav-icon"></i>
+                                    <span class="nav-hide-text">&nbsp;
+                                        <?php echo $_SESSION['email']; ?>
+                                    </span>
+                                </span></a>
+                                <a href="views/logout.php"><span class="nav-item nav-user">
+                                    &nbsp;
+                                        logout
+                                </span></a>
+                                <?php
+                            } else {
+                                ?>
+                                <a href="views/login.php"><span class="nav-item nav-user"><i class="fas fa-user-circle nav-icon"></i>
+                                    <span class="nav-hide-text">&nbsp;
+                                        <?php echo 'Login / Sign up' ; ?>
+                                    </span>
+                                </span></a>
+                                <?php
+                            }
+                        ?>
+
                 <a href=""><span class="nav-item nav-search"><i class="fas fa-search fa-lg"></i>
                     <span class="nav-hide-text">&nbsp; Search</span>
                 </span></a>
