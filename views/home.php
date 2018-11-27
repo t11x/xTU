@@ -26,30 +26,39 @@
 
     <!-- Shortcuts -->
     <div class="container card-align">
+    <a href="<?php echo "views/search.php?category=1"; ?>">
     <div class="card">
         <img class="cardicon" src="https://cdn0.iconfinder.com/data/icons/kameleon-free-pack-rounded/110/Food-Dome-512.png" alt="food">
         <div class="carddescription">
             Food
         </div>
     </div>
+    </a>
+    <a href="<?php echo "views/search.php?category=2"; ?>">
     <div class="card">
         <img class="cardicon" src="https://balithisweek.com/wp-content/uploads/2016/10/btw-icon-cafe.png" alt="Cafe">
         <div class="carddescription">
             Café
         </div>
     </div>
+    </a>
+    <a href="<?php echo "views/search.php?category=3"; ?>">
     <div class="card">
         <img class="cardicon" src="https://image.flaticon.com/icons/svg/227/227310.svg" alt="Store">
         <div class="carddescription">
             Store
         </div>
     </div>
+    </a>
+    <a href="<?php echo "views/search.php?category=4"; ?>">
     <div class="card">
         <img class="cardicon" src="https://image.flaticon.com/icons/svg/1048/1048380.svg" alt="Phamacy">
         <div class="carddescription">
             Pharmacy
         </div>
     </div>
+    </a>
+    <a href="<?php echo "views/search.php?category=5"; ?>">
     <div class="card">
         <img class="cardicon" src="https://png.pngtree.com/svg/20161203/others_906370.png" alt="Others">
         <div class="carddescription">
@@ -57,6 +66,7 @@
         </div>
     </div>
     </div>
+    </a>
     <!-- Shortcuts End -->
 
 
@@ -245,7 +255,7 @@
 
     <!-- ADD BUTTON -->
     
-    <a href="..."><span class="xadd-button"><i class="fa fa-plus fa-3x"></i>
+    <a href="views/additem.php"><span class="xadd-button"><i class="fa fa-plus fa-3x"></i>
     <span class="tooltiptext">Add a store</span></span></a>
 
       

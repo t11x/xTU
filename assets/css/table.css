@@ -1,0 +1,109 @@
+body {
+    font-family: Arial, Helvetica,'CS ChatthaiUI', 'Thonburi',  sans-serif;
+    margin: 0;
+}
+
+a:link, a:visited {
+    text-decoration: none;
+    color: black;
+}
+
+a:hover, a:active {
+    color: #3868b5;
+}
+
+.container {
+    margin: 0 auto;
+    /* position: relative; */
+    /* z-index: -1; */
+}
+
+@media screen and (min-width: 1250px) {
+    .container {
+        max-width: 1200px;
+        width: 1200px;
+    }
+}
+
+/* ---------- User_table ---------- */
+.ut-title {
+    text-align: center;
+    font-weight: bold;
+    font-size: 30px;
+    padding: 26px;
+}
+
+#users {
+    border-collapse: collapse;
+    width: 100%;
+    box-shadow: 0 4px 16px 0 #bbb;
+}
+
+#users td, #users th {
+    border-bottom: 1px solid #ddd;
+    padding: 8px;
+}
+
+#users tr:nth-child(even){background-color: #f7f7f7;}
+
+#users tr:hover {background-color: #ddd;}
+
+#users th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #AB5DE6;
+    color: white;
+}
+
+a.store {
+    color: #0061FF;
+    margin-right: 6px;
+}
+
+a.store:hover {
+    text-decoration: underline;
+    color: #0061A4;
+}
+
+a.owner {
+    color: #0061FF;
+    margin-right: 6px;
+}
+
+a.owner:hover {
+    text-decoration: underline;
+    color: #0061A4;
+}
+
+a.delete {
+    color: red;
+}
+
+a.delete:hover {
+    color: darkred;
+    text-decoration: underline;
+}
+
+a.wait {
+    margin-left: 6px;
+    color: #FF9B00;
+}
+
+a.wait:hover {
+    color: darkorange;
+    text-decoration: underline;
+}
+
+td.fullaccess {
+    color: #00C083;
+}
+
+td.wait {
+    color: #FF9B00;
+}
+
+td.normal {
+    color: black;
+    content: "Normal";
+}

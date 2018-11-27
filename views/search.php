@@ -9,7 +9,7 @@
 
 <link rel="stylesheet" href="../assets/css/search.css" />
 <div class="container move-down">
-        <input onkeyup="searchInput(event)" id="searchInput" type="text" id="search" name="search" placeholder="Search a store, a category...">
+        <input onkeyup="searchInput(event)" id="searchInput" type="text" id="search" name="search" placeholder="Search a store...">
         <a id="searchLink" href=""> <button id="query"> <i class="fas fa-search"></i> Search</button></a>
         <button id="alert"><i class="fas fa-times"></i></button>
     </form>
@@ -70,23 +70,24 @@
           $rating = round($row_rating['rating'], 1);
         ?>
             <!-- ITEM -->
-            <div class="query-card">
+            <a href="store.php?id=<?php echo $row['storeID'] ?>">
+            <div class="query-card" style="display: block;">
                 <!-- item image -->
-                <a href="#"><div class="query-img-box"><img class="query-img" src="<?php echo $row_img['photo']; ?>" alt=""></div></a>
+                <div class="query-img-box"><img class="query-img" src="<?php echo $row_img['photo']; ?>" alt=""></div>
                 <!-- item category -->
-                <div class="query-category">
+                <!-- <div class="query-category">
                     <img class="query-category-img" src="https://cdn0.iconfinder.com/data/icons/kameleon-free-pack-rounded/110/Food-Dome-512.png" alt="food">Food
-                </div>
+                </div> -->
                 <!-- item description -->
                 <!-- <span class="operate-box" style="background-color:red">CLOSED</span> -->
-                <a href="#"><span class="query-name-place"><?php echo $row['name']; ?></span></a>
+                <span class="query-name-place"><?php echo $row['name']; ?></span>
                 <p><?php echo $row['description']; ?> 
                 <!-- <a class="more" href="#">more...</a> -->
                 </p>
                 <!-- item special -->
                 <div class="item-special-box">
                 <span class="rating-star"><i class="fas fa-star"></i><?php echo $rating; ?></span></div>
-            </div><!-- End-ITEM -->
+            </div></a><!-- End-ITEM -->
         <?php 
       }
     

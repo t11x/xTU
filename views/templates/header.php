@@ -23,7 +23,7 @@ session_start();
     <div class="navbar-box">
         <div class="container">
             <div class="nav-left">
-                <a href=""><img id="title-logo" src="https://i.imgur.com/mZfzt9s.png" alt="1024x545"></a>
+                <a href="../index.php"><img id="title-logo" src="https://i.imgur.com/mZfzt9s.png" alt="1024x545"></a>
                 <div class="nav-list dd-h">Categories <i class="fas fa-angle-down"></i>
             
             <!-- Dropdown container -->
@@ -67,9 +67,11 @@ session_start();
                                         <?php echo $_SESSION['email']; ?>
                                     </span>
                                 </span></a>
-                                <a href="logout.php"><span class="nav-item nav-user">
-                                    &nbsp;
-                                        logout
+                                &nbsp;
+                                <a href="logout.php"><span class="nav-item nav-user" style="height: 36px;">
+                                
+                                        Logout
+                                        
                                 </span></a>
                                 <?php
                             } else {
@@ -83,7 +85,7 @@ session_start();
                             }
                         ?>
 
-                <a href=""><span class="nav-item nav-search"><i class="fas fa-search fa-lg"></i>
+                <a href="search.php"><span class="nav-item nav-search"><i class="fas fa-search fa-lg"></i>
                     <span class="nav-hide-text">&nbsp; Search</span>
                 </span></a>
             </div><!-- END Nav-right -->
