@@ -11,10 +11,10 @@
             </div>
             <div class="column-footer">
                     <strong>Quick links</strong><br>
-                    <a href="">Search</a>
-                    <a href="">Sign up</a>
-                    <a href="">Add a store</a>
-                    <a href="">ThammaTrans</a>
+                    <a href="<?php echo "search.php?"; ?>">Search</a>
+                    <a href="<?php echo "login.php?"; ?>">Sign up</a>
+                    <a href="<?php echo "additem.php?"; ?>">Add a store</a>
+                    <a href=""">ThammaTrans</a>
                 </div>
             <div class="column-footer">
                 <strong>Support</strong><br>

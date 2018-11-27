@@ -1,16 +1,13 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Reports and bugs</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="table.css" />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-    <!-- <script src="main.js"></script> -->
-</head>
-<body>
-    <div class="container">
+<?php 
+
+    require '../connect.php';
+
+    require './templates/header.php';
+    $parts = explode("?", $_SERVER['REQUEST_URI']);   
+    $current = $parts[0];
+?>
+    <link rel="stylesheet" type="text/css" media="screen" href="../assets/css/table.css" />
+    <div class="container" style="margin-top:100px;">
         <div class="ut-title">Reports and bugs</div>
         <table id="users">
             <tr>
@@ -71,5 +68,7 @@
             </tr>
         </table>
     </div>
-</body>
-</html>
+    <?php
+
+require './templates/footer.php';
+?>

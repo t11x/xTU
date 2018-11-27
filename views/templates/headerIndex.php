@@ -29,29 +29,13 @@ session_start();
             <!-- Dropdown container -->
             <div class="dropdown-box">
                 <div class="dropdown-subcat">
-                    <div class="dropdown-subcat-head"><i class="fas fa-utensils"></i> Food & Drink</div>
+                    <div class="dropdown-subcat-head"><i class="fas fa-utensils"></i></div>
                     <div class="dropdown-item">
-                        <a href=""><img src="https://cdn.icon-icons.com/icons2/881/PNG/512/Hamburger_icon-icons.com_68741.png" alt=""><div class="dd-t">Food</div></a>
-                        <a href=""><img src="https://marketplace.canva.com/MACaIUDtCx8/1/thumbnail_large/canva-cafe-icon-concept-MACaIUDtCx8.png" alt=""><div class="dd-t">Café</div></a>
-                        <a href=""><img src="https://cdn.icon-icons.com/icons2/881/PNG/512/Cocktail_icon-icons.com_68766.png" alt=""><div class="dd-t">Drink</div></a>
-                        <a href=""><img src="https://image.flaticon.com/icons/png/512/138/138307.png" alt=""><div class="dd-t">Stall</div></a>
-                    </div>
-                </div><!-- END Subcat -->
-                <div class="dropdown-subcat">
-                    <div class="dropdown-subcat-head"><i class="fas fa-store"></i> Stores</div>
-                    <div class="dropdown-item">
-                        <a href=""><img src="https://pbs.twimg.com/profile_images/955329141707915265/FzsHnjOp_400x400.jpg" alt=""><div class="dd-t">7-11</div></a>
-                        <a href=""><img src="https://i1.wp.com/muchikoro.com/wordpress/wp-content/uploads/2016/07/FamilyMart-300x300.png" alt=""><div class="dd-t">Family Mart</div></a>
-                        <a href=""><img src="https://superryu247.files.wordpress.com/2013/04/lawson_logo.jpg" alt=""><div class="dd-t">Lawson 108</div></a>
-                        <a href=""><img src="https://www.oikosfamily.co.za/wp-content/uploads/2016/03/store-Icon-1.png" alt=""><div class="dd-t">Others</div></a>
-                    </div>
-                </div><!-- END Subcat -->
-                <div class="dropdown-subcat">
-                    <div class="dropdown-subcat-head"><i class="fas fa-user-cog"></i> Services</div>
-                    <div class="dropdown-item">
-                        <a href=""><img src="https://pbs.twimg.com/profile_images/955329141707915265/FzsHnjOp_400x400.jpg" alt=""><div class="dd-t">7-11</div></a>
-                        <a href=""><img src="https://i1.wp.com/muchikoro.com/wordpress/wp-content/uploads/2016/07/FamilyMart-300x300.png" alt=""><div class="dd-t">Family Mart</div></a>
-                        <a href=""><img src="https://superryu247.files.wordpress.com/2013/04/lawson_logo.jpg" alt=""><div class="dd-t">Lawson 108</div></a>
+                        <a href="<?php echo "views/search.php?category=1"; ?>"><img src="https://cdn0.iconfinder.com/data/icons/kameleon-free-pack-rounded/110/Food-Dome-512.png" alt=""><div class="dd-t">Food</div></a>
+                        <a href="<?php echo "views/search.php?category=2"; ?>"><img src="https://balithisweek.com/wp-content/uploads/2016/10/btw-icon-cafe.png" alt=""><div class="dd-t">Café</div></a>
+                        <a href="<?php echo "views/search.php?category=3"; ?>"><img src="https://image.flaticon.com/icons/svg/227/227310.svg" alt=""><div class="dd-t">Store</div></a>
+                        <a href="<?php echo "views/search.php?category=4"; ?>"><img src="https://image.flaticon.com/icons/svg/1048/1048380.svg" alt=""><div class="dd-t">Pharmacy</div></a>
+                        <a href="<?php echo "views/search.php?category=5"; ?>"><img src="https://png.pngtree.com/svg/20161203/others_906370.png" alt=""><div class="dd-t">Others</div></a>
                     </div>
                 </div><!-- END Subcat -->
             </div><!-- END dropdown container --></div><!-- END dropdown menu -->
@@ -62,7 +46,7 @@ session_start();
                 <?php
                             if(isset($_SESSION['email'])){
                                 ?>
-                                <a href=""><span class="nav-item nav-user"><i class="fas fa-user-circle nav-icon"></i>
+                                <a href="views/edit_user.php"><span class="nav-item nav-user"><i class="fas fa-user-circle nav-icon"></i>
                                     <span class="nav-hide-text">&nbsp;
                                         <?php echo $_SESSION['email']; ?>
                                     </span>
