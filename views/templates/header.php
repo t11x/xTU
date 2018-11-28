@@ -29,7 +29,7 @@ session_start();
             <!-- Dropdown container -->
             <div class="dropdown-box">
                 <div class="dropdown-subcat">
-                    <div class="dropdown-subcat-head"><i class="fas fa-utensils"></i></div>
+                    <div class="dropdown-subcat-head">Categories</div>
                     <div class="dropdown-item">
                         <a href="<?php echo "search.php?category=1"; ?>"><img src="https://cdn0.iconfinder.com/data/icons/kameleon-free-pack-rounded/110/Food-Dome-512.png" alt=""><div class="dd-t">Food</div></a>
                         <a href="<?php echo "search.php?category=2"; ?>"><img src="https://balithisweek.com/wp-content/uploads/2016/10/btw-icon-cafe.png" alt=""><div class="dd-t">Café</div></a>
@@ -42,7 +42,7 @@ session_start();
             </div><!-- END Nav-left -->
 
             <div class="nav-right">
-                <span class="nav-list">ThammaTrans</span>
+                <!-- <span class="nav-list">ThammaTrans</span> -->
                 <?php
                             if(isset($_SESSION['email'])){
                                 ?>

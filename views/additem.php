@@ -5,27 +5,35 @@
     require './templates/header.php';
     $parts = explode("?", $_SERVER['REQUEST_URI']);   
     $current = $parts[0];
+    
+    if(!isset($_SESSION['email'])){
+        header('Location: login.php');
+    }
+
 ?>
 <link rel="stylesheet" href="../assets/css/additem.css" />
 <div class="container">
     <div class="ap-head-img"><img src="http://www.tu.ac.th/uploads/_tu_img/home/domerangsit.jpg" alt="">
         <div class="ap-title">Add a New Store</div></div>
 
-        <form action="/add.html" method="get">
+        <form action="additemcheck.php" method="post" enctype="multipart/form-data">
             <br>
-            <input type="text" name="s_name"
+            <input type="text" name="name"
             placeholder="Store name" class="ap-text-box ap-text-bold" size="35" required><br><br>
             
             <!-- LOCATION -->
             <div class="ap-box">
             <div class="ap-head"><i class="fas fa-map-marker-alt"></i> Location</div>
             <strong>Basic location: </strong>
-            <input type="text" name="s_basic_location"
+            <input type="text" name="basic_location"
             placeholder="e.g. Chiang Rak 1 Gate" class="ap-text-box" size="35" required> <span class="required-txt">*required</span><br>
 
-            <strong>Map location: </strong>
-            <input type="text" name="s_location"
-            placeholder="e.g. 14.068937,100.607438" class="ap-text-box" size="35"><br>
+            <strong>Latitude: </strong>
+            <input type="text" name="latitude"
+            placeholder="e.g. 14.068937" class="ap-text-box" size="35"><br>
+            <strong>Longitude: </strong>
+            <input type="text" name="longitude"
+            placeholder="e.g. 100.607438" class="ap-text-box" size="35"><br>
             <div id="googleMap"></div>
             </div><!-- END Location Box -->
 
@@ -33,19 +41,15 @@
             <br>
             <div class="ap-box">
             <div class="ap-head"><i class="fas fa-swatchbook"></i> Category</div>
-            <input list="categories" name="category" class="ap-text-box" placeholder="Select a category or add a new one" size="40" required>
-            <datalist id="categories">
-                <option value="Food">
-                <option value="Cafe">
-                <option value="Drink">
-                <option value="Stall">
-                <option value="7-11">
-                <option value="Family Mart">
-                <option value="Lawson">
-                <option value="Other convenience store">
-                <option value="Laudry">
-                <option value="Uncategory">
-            </datalist>
+            <select name="category" id="categories">
+                <?php 
+                    $sql_category = "SELECT * from storeType";
+                    $result_category = $con->query($sql_category);
+                    while ($row_category = $result_category->fetch_assoc()){
+                    ?>
+                    <option value="<?php echo $row_category['storeTypeID'];?>"><?php echo $row_category['storeType'];?></option>
+                    <?php } ?>   
+            </select>
             <span class="required-txt">*required</span>
             </div>
 
@@ -82,22 +86,29 @@
                 </tr>
                 <tr>
                     <td><i class="fas fa-globe"></i> Website</td>
-                    <td><input type="url" name="fb" class="ap-text-box" placeholder="www.example.com"></td>
+                    <td><input type="url" name="site" class="ap-text-box" placeholder="www.example.com"></td>
                 </tr>
             </table>
             </div>
 
             <br>
-            <div class="ap-box">
+            <div class="ap-box" style="margin-bottom:50px;">
             <div class="ap-head"><i class="fas fa-clock"></i> Time</div>
-            <div class="ap-time-box">
-            <label><input type="radio" name="s_day" value="Everyday" id="evd" class="s-day" checked> Everyday</label>
+            <div class="ap-time-box" style="margin-bottom:50px;">
+            <!-- <label><input type="radio" name="s_day" value="Everyday" id="evd" class="s-day" checked> Everyday</label>
             <label><input type="radio" name="s_day" value="Weekdays" id="wkd" class="s-day"> Weekdays</label>
             <label><input type="radio" name="s_day" value="Weekends" id="wke" class="s-day"> Weekends</label>
             <label><input type="radio" name="s_day" value="Exception" id="eve" class="s-day"> Everyday <strong>except one day</strong></label>
-            <label><input type="radio" name="s_day" value="Custom" id="cus" class="s-day"> Custom</label>
-
+            <label><input type="radio" name="s_day" value="Custom" id="cus" class="s-day"> Custom</label> -->
+            <strong>Day: </strong>
+            <input type="text" name="day"
+            placeholder="Weekday, Weekend, Weekday except Tuesday, etc.. " class="ap-text-box" size="35"><br>
             <br>
+            <strong>Time: </strong>
+            <input type="time" name="open" required>
+            <input type="time" name="close" required>
+            
+
 
             <?php
             // Make TIME SELECT
@@ -114,26 +125,26 @@
 
             <?php
             // Make TIME SELECT V2
-            $time_i = '
-            <input type="number" name="h" min="0" max="24" placeholder="H" class="ap-hour"> : 
-            <input type="number" name="m" min="0" max="59" placeholder="M" class="ap-min">';
-            ?>
+            // $time_i = '
+            // <input type="number" name="h" min="0" max="24" placeholder="H" class="ap-hour"> : 
+            // <input type="number" name="m" min="0" max="59" placeholder="M" class="ap-min">';
+            // ?>
 
             <?php
-            $date = array("Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday");
-            $d = array("sun","mon","tue","wed","thu","fri","sat");
-            ?>
+            // $date = array("Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday");
+            // $d = array("sun","mon","tue","wed","thu","fri","sat");
+            // ?>
 
             <!-- Everyday, Weekdays, Weekends -->
-            <div id="ap_day_panel" class="normal-time">
+            <!-- <div id="ap_day_panel" class="normal-time">
                 Open <input type="number" name="h" min="0" max="24" placeholder="H" class="ap-hour"> : 
                 <input type="number" name="m" min="0" max="59" placeholder="M" class="ap-min"> 
                 Close <input type="number" name="h" min="0" max="24" placeholder="H" class="ap-hour"> : 
                 <input type="number" name="m" min="0" max="59" placeholder="M" class="ap-min">
-            </div>
+            </div> -->
 
             <!-- Exception -->
-            <div id="ap_exception_panel" class="except-time">
+            <!-- <div id="ap_exception_panel" class="except-time">
                 <table class="ap-dex">
                     <tr>
                         <th colspan="2">Normal day: </th><td>
@@ -147,11 +158,11 @@
                 <th>Except: </th><td>
                 <input list="ex-day" name="except">
                 <datalist id="ex-day">
-                    <?php
-                    for ($i = 0; $i < 7; $i++){
-                        echo '<option value="'.$date[$i].'">';
-                    }
-                    ?>
+                    <?php 
+                    // for ($i = 0; $i < 7; $i++){
+                    //     echo '<option value="'.$date[$i].'">';
+                    // }
+                    // ?>
                 </datalist>
                 <label style="display:block"><input type="checkbox" name="op" value="Closed">Closed</label>
                 </td><td>
@@ -161,25 +172,27 @@
                 <input type="number" name="m" min="0" max="59" placeholder="M" class="ap-min"></td>
                     </tr>
                 </table>
-            </div>
+            </div> -->
 
 
             <!-- Custom -->
-            <table id="ap_custom_panel" class="ap-time-table">
+            <!-- <table id="ap_custom_panel" class="ap-time-table"> -->
                 <?php
-                for ($c_date = 0; $c_date < count($date); $c_date++){
-                echo "<tr>";
-                    echo '<th><label><input type="checkbox" name="s_date" value="'.$d[$c_date].'"> '.$date[$c_date].'</label></th>';
-                    // Open
-                    //echo "<td>".$hour_l.$min_l."</td>";
-                    echo "<td >".$time_i."</td>";
-                    // Close
-                    //echo "<td> – ".$hour_l.$min_l."</td>";
-                    echo "<td > – ".$time_i."</td>";
-                echo "</tr>";}?>
-            </table><!-- END time table -->
+            //     for ($c_date = 0; $c_date < count($date); $c_date++){
+            //     echo "<tr>";
+            //         echo '<th><label><input type="checkbox" name="s_date" value="'.$d[$c_date].'"> '.$date[$c_date].'</label></th>';
+            //         // Open
+            //         //echo "<td>".$hour_l.$min_l."</td>";
+            //         echo "<td >".$time_i."</td>";
+            //         // Close
+            //         //echo "<td> – ".$hour_l.$min_l."</td>";
+            //         echo "<td > – ".$time_i."</td>";
+            //     echo "</tr>";}?>
+            <!-- </table> -->
+            <!-- END time table -->
 
-            </div><!-- END ap-time-box -->
+            <!-- </div> -->
+            <!-- END ap-time-box -->
             </div>
             
             <!-- MORE INFO -->

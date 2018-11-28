@@ -16,14 +16,32 @@
     if(!$result_img){
         $con->error;
     }
-    $row_img = $result_img->fetch_assoc()
+    $row_img = $result_img->fetch_assoc();
+
+    if(isset($_POST['submit'])){
+        if(isset($_SESSION['userID'])){
+            $sql_rev = "INSERT INTO review (userID,rating,reviewTitle,review,storeID) 
+            VALUES ($_SESSION[userID],$_POST[star],'$_POST[title]','$_POST[description]',$_GET[id])";
+            $result_rev = $con->query($sql_rev);
+            if(!$result_rev){
+                echo "<br><br><br><br><br>";
+                echo $con->error;
+            }
+        } else{
+            header('Location: login.php');
+        }
+
+    }
+    
+    
+
 ?>
 
 <link rel="stylesheet" href="../assets/css/store.css"/>
 <div class="container">
     <!-- Store Head -->
     <div class="store-head">
-        <img src="<?php echo $row_img[photo];?>" alt="">
+        <img src="<?php echo $row_img['photo'];?>" alt="">
         <div class="store-title"><?php echo $row['name']; ?></div>
         <div class="store-location-basic"><i style="margin-right:10px;" class="fas fa-map-marker-alt"></i><?php echo $row['shortloc']; ?></div>
         <div class="store-category"><img src="https://cdn0.iconfinder.com/data/icons/kameleon-free-pack-rounded/110/Food-Dome-512.png" alt="">Food</div>
@@ -65,7 +83,7 @@
         <!-- Contact -->
         <div class="section-box-head"><i class="fas fa-external-link-alt"></i> Contact</div>
         <p class="contact-align">
-            <a href="<?php echo $row['phone']; ?>"><i class="fas fa-phone"></i> <?php echo $row['phone']; ?></a>
+            <a href="tel:<?php echo $row['phone']; ?>"><i class="fas fa-phone"></i> <?php echo $row['phone']; ?></a>
             <a href="<?php echo $row['facebook']; ?>"><i class="fab fa-facebook"></i> Facebook</a>
             <a href="<?php echo $row['line']; ?>"><i class="fab fa-line"></i> LINE</a>
             <a href="<?php echo $row['site']; ?>"><i class="fas fa-globe"></i> Website</a>
@@ -145,29 +163,27 @@
         </table><!-- END Star -->
 
         <div class="review-container">
-            <div class="review-box">
+           
                 <?php
                 while($row_rating = $result_rating->fetch_assoc()){
                 ?>
+                 <div class="review-box">
                 <div class="review-title"><?php echo $row_rating['reviewTitle']; ?></div>
                 <p><?php echo $row_rating['review']; ?></p>
                 <div class="reviewer-info">
                     <span class="reviewer-name"><?php echo $row_rating['email']; ?></span><br>
-                    <?php echo $row_rating['email']; ?>
                 </div>
-                <a href="">Report abuse</a>
-            </div><!-- END review box -->
+                <!-- <a href="">Report abuse</a> -->
+            </div><!-- END review bo x -->
                <?php } ?>
         </div>
         <div class="reviewee">
-            <form action="/userprofile.php" method="POST">
-                
+            <form action="store.php?id=<?php echo $_GET['id']; ?>" method="POST">
                 <div class="section-box-head">Write your own review and/or rate the store.</div><br>
-                <input type="hidden" name="user_id">
                 <input type="text" name="title" placeholder="Title" class="review-input"><br>
                 <textarea name="description" placeholder="Description..." class="review-input"></textarea><br>
-                <input type="submit" value="Send" class="store-button">
-                <select class="select-star">
+                <input type="submit" name ="submit" value="Send" class="store-button">
+                <select name="star" class="select-star">
                     <option value="">Select a star</option>
                     <option value="1">1</option>
                     <option value="2">2</option>

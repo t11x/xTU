@@ -2,14 +2,18 @@
 require '../connect.php';
 session_start();
 if(isset($_POST['signup'])){
-    echo $_POST['email']."<br><br>";
-    echo $_POST['pass']."<br><br>";
-    echo $_POST['check_pass']."<br><br>";
+    // echo $_POST['email']."<br><br>";
+    // echo $_POST['pass']."<br><br>";
+    // echo $_POST['check_pass']."<br><br>";
 
     $passwordHash = password_hash($_POST['pass'], PASSWORD_DEFAULT);
 
     $sql = "INSERT INTO user (email, password, userType) VALUES ('$_POST[email]', '$passwordHash', 'user')";
     $result = $con->query($sql);
+    echo "<script>
+                    alert('signup success')
+                    window.location = 'login.php'
+                </script>";
 
     if(!$result){
         echo $con->error;
@@ -26,6 +30,8 @@ if(isset($_POST['signup'])){
         $row = $result->fetch_assoc();
         if(password_verify($_POST['pass'], $row['password'])){
             $_SESSION['email']=$_POST['email'];
+            $_SESSION['userType']=$row['userType'];
+            $_SESSION['userID']=$row['userID'];
             echo "<script>
                     alert('login success')
                     window.location = '../index.php'

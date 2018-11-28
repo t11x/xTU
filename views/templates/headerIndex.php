@@ -42,7 +42,7 @@ session_start();
             </div><!-- END Nav-left -->
 
             <div class="nav-right">
-                <span class="nav-list">ThammaTrans</span>
+                <!-- <span class="nav-list">ThammaTrans</span> -->
                 <?php
                             if(isset($_SESSION['email'])){
                                 ?>
